@@ -1,0 +1,54 @@
+﻿@page "{id:int?}"
+@model ToDos.Pages.Todos.DetailsModel
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<h1>Details</h1>
+
+<div>
+    <h4>Todo</h4>
+    <hr />
+    <dl class="row mt-4 mx-4">
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Todo.ToDo)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Todo.ToDo)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Todo.Description)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Todo.Description)
+        </dd>
+        
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Todo.UpdatedDate)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Todo.UpdatedDate)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Todo.Status)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Todo.Status)
+        </dd>
+    </dl>
+</div>
+<div class="mt-4 mx-4">
+    
+    @if(Model.Todo?.IsCompleted==false)
+    {
+        <a asp-page="./Edit" asp-route-id="@Model.Todo?.Id">Edit</a>
+        <form method="post" class="my-2">
+        <div class="form-group">
+            <input type="submit" value="Complete" class="btn btn-primary" />
+        </div>
+        </form>
+    }
+    <br />
+    <a asp-page="./Index">Back to List</a>
+</div>

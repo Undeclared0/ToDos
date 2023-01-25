@@ -1,0 +1,53 @@
+﻿@page "{id:int?}"
+@model ToDos.Pages.Todos.DeleteModel
+
+@{
+    ViewData["Title"] = "Delete";
+}
+
+<h1>Delete</h1>
+
+<h3>Are you sure you want to delete this?</h3>
+<div>
+    <h4 class="mt-4 mx-4">Todo</h4>
+    <hr />
+    <dl class="row mt-4 mx-4">
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Todo.ToDo)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Todo.ToDo)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Todo.Description)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Todo.Description)
+        </dd>
+        
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Todo.UpdatedDate)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Todo.UpdatedDate)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Todo.DueDate)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Todo.DueDate)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Todo.Status)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Todo.Status)
+        </dd>
+    </dl>
+    
+    <form method="post" class="mt-4 mx-4">
+        <input type="hidden" asp-for="Todo.Id" />
+        <input type="submit" value="Delete" class="btn btn-danger" /> |
+        <a asp-page="./Index">Back to List</a>
+    </form>
+</div>

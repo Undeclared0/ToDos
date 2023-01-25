@@ -1,0 +1,79 @@
+﻿@page "{id:int?}"
+@model ToDos.Pages.Todos.IndexModel
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Index</h1>
+
+<p>
+    <a asp-page="Create" style="text-decoration: none;" class="p-0">
+        <input type="button" value="Create" class="btn btn-success" />
+    </a>
+</p>
+<form class="mt-4">
+    <p class="text-center">
+        Keyword: <input type="text" asp-for="SearchString" />
+        <input type="submit" value="Filter" class="btn btn-outline-info"/>
+    </p>
+</form>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Todo[0].ToDo)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Todo[0].Description)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Todo[0].UpdatedDate)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model=>model.Todo[0].DueDate)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model=>model.Todo[0].Status)
+            </th>
+            
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model.Todo) {
+        <tr>
+            <td>
+                <a asp-page="./Details" asp-route-id="@item.Id" style="text-decoration: none; color: black; font-weight:bold">@Html.DisplayFor(modelItem => item.ToDo)</a>
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Description)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.UpdatedDate)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.DueDate)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Status)
+            </td>
+            <td class="mx-3">
+                @if(item.IsCompleted==false)
+                {
+                    <a asp-page="./Edit" asp-route-id="@item.Id" style="text-decoration: none;" class="p-0 mx-1">
+                        <input type="button" value="Edit" class="btn btn-outline-primary" />
+                    </a>
+                }
+                    <a asp-page="./Details" asp-route-id="@item.Id" style="text-decoration: none;" class="p-0 mx-1">
+                    <input type="button" value="Details" class="btn btn-outline-primary" />        
+                </a>
+                    <a asp-page="./Delete" asp-route-id="@item.Id" style="text-decoration: none;" class="p-0 mx-1">
+                    <input type="button" value="Delete" class="btn btn-outline-primary" />
+                </a>
+            </td>
+
+        </tr>
+}
+    </tbody>
+</table>

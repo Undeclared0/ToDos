@@ -1,0 +1,67 @@
+﻿@page "{id:int?}"
+@model ToDos.Pages.Todos.EditModel
+
+@{
+    ViewData["Title"] = "Edit";
+}
+
+<h1>Edit</h1>
+
+<h4>Todo</h4>
+<hr />
+<div class="row ">
+    <div class="col-md-4">
+        <form method="post">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="Todo.Id" />
+            <div class="form-group mt-4 mx-4">
+                <label asp-for="Todo.ToDo" class="control-label"></label>
+                <input asp-for="Todo.ToDo" class="form-control" />
+                <span asp-validation-for="Todo.ToDo" class="text-danger"></span>
+            </div>
+            <div class="form-group mt-4 mx-4">
+                <label asp-for="Todo.Description" class="control-label"></label>
+                <input asp-for="Todo.Description" class="form-control" />
+                <span asp-validation-for="Todo.Description" class="text-danger"></span>
+            </div>
+            <div class="form-group mt-4 mx-4">
+                <label asp-for="Todo.DueDate" class="control-label"></label>
+                <input asp-for="Todo.DueDate" class="form-control" />
+                <span asp-validation-for="Todo.DueDate" class="text-danger"></span>
+            </div>
+            <div class="form-group mt-4 mx-4">
+                <label asp-for="Todo.Status" class="control-label"></label>
+                <input asp-for="Todo.Status" class="form-control" readonly />
+                <span asp-validation-for="Todo.Status" class="text-danger"></span>
+            </div>
+            <div class="form-group mt-4 mx-4">
+                <label asp-for="Todo.IsCompleted" class="control-label" hidden></label>
+                <input asp-for="Todo.IsCompleted" class="form-control" type="hidden" />
+                <span asp-validation-for="Todo.IsCompleted" class="text-danger" hidden></span>
+            </div>
+            <div class="mt-4 mx-4">
+                <dl class="row">
+                    <dt class="col-sm-4">
+                        @Html.DisplayNameFor(model => model.Todo.UpdatedDate)
+                    </dt>
+                    <dd class="col-sm-8">
+                        @Html.DisplayFor(model => model.Todo.UpdatedDate)
+                    </dd>
+                    
+                </dl>
+
+            </div>
+            <div class="form-group mt-4 mx-4">
+                <input type="submit" value="Save" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div class="mt-4 mx-4">
+    <a asp-page="./Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
